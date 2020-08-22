@@ -1,0 +1,45 @@
+
+
+<div class="container">
+<div class="row justify-content-end m-2">
+    <button type="button" class="btn btn-primary" (click)="newTask()"><i class="fa fa-file"></i>&nbsp;New Task</button>
+</div>
+<div class="row justify-content-center">
+            <div class="container" [hidden]="!showForm"  >
+                    
+                                 <form [formGroup]="taskForm"  (ngSubmit)="onSubmit(taskForm)">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Title</label>
+                                        <input type="text" class="form-control" value="test" name="title"  id="title" formControlName="title" required>
+                                        
+                                        <div  *ngIf="taskForm.get('title').touched && taskForm.get('title').invalid"  class="alert alert-danger alert-dismissible fade show" role="alert">
+                                           
+                                            Name is required.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input class="form-check-input" formControlName="completed" type="checkbox" value=false id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                              Completed
+                                            </label>
+                                          </div>
+                                    </div>
+                                    <div class="row justify-content-end no-gutters">
+                                        <button type="submit" [disabled]="taskForm.invalid" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Save</button>
+                                        <button  (click)="showForm=!showForm" class="btn btn-danger ml-2"><i class="fa fa-times"></i>&nbsp;Cancel</button>
+                                       
+                                    </div>  
+                                   
+                                 </form>
+            </div>
+            
+</div>
+  
+<div class="row">
+     <div class="container-fluid">
+         <listtodo [tasks]="tasks"    (task)="setTask($event)"></listtodo> 
+     </div>
+</div>
+ 
+</div>
