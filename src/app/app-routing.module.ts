@@ -7,11 +7,12 @@ import {LoginComponent} from "./login/login.component"
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './services/auth-guard.service';
 const routes: Routes = [
+                         
+                          {path:"/SignUp",component:SignupComponent},
+                          {path:"/Tasks",component:ListingtasksComponent,canActivate:[AuthGuard]},
+                          {path:"/Progress",component:ProgressComponent},
+                          {path:"/Notification",component:NotificationComponent},
                           {path:"",component:LoginComponent},
-                          {path:"SignUp",component:SignupComponent},
-                          {path:"Tasks",component:ListingtasksComponent,canActivate:[AuthGuard]},
-                          {path:"Progress",component:ProgressComponent},
-                          {path:"Notification",component:NotificationComponent}
                        ];
 
 @NgModule({
