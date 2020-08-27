@@ -1,0 +1,58 @@
+
+
+<div class="container mt-5  border-form">
+        <div class="row justify-content-center">
+                <h1>Sign Up</h1>
+        </div>
+<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3"></div>
+   <form class="form col-lg-6 col-md-6 col-sm-6" [formGroup]="signUpForm" (ngSubmit)="signupnwithemail()">
+       
+       <div class="form-group">
+         <label for="">Email</label>
+         <input type="text" formControlName="email"   class="form-control" placeholder="" aria-describedby="helpId">
+         <div id="helpId" *ngIf="signUpForm.get('email').touched && signUpForm.get('email').errors" class="alert alert-danger">
+                 <p *ngIf="signUpForm.get('email').errors?.required"> Email is required</p>
+                 <p *ngIf="signUpForm.get('email').errors?.email"> This is not match value of email!</p>
+         </div>
+       </div>
+       <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" formControlName="password" class="form-control" placeholder="" aria-describedby="helpId">
+            <div id="helpId" *ngIf="signUpForm.get('password').touched && signUpForm.get('password').errors" class="alert alert-danger">
+                <p *ngIf="signUpForm.get('password').errors?.required"> Password is required</p>
+                <p *ngIf="signUpForm.get('password').errors?.minlength">Password should have minimum 8 characters.</p>
+            </div>
+          </div>
+          <div class="form-group">
+                <label for="">Confirm Password</label>
+                <input type="password"  formControlName="confPassword" class="form-control" placeholder="" aria-describedby="helpId">
+                <div id="helpId" *ngIf="signUpForm.get('confPassword').touched && signUpForm.get('confPassword').errors" class="alert alert-danger">
+                        <p *ngIf="signUpForm.get('confPassword').errors?.required"> Confirm your password</p>
+                        <p *ngIf="signUpForm.get('confPassword').errors?.minlength"> Password should have minimum 8 characters!</p>
+                        <p *ngIf="signUpForm.get('confPassword').errors?.MatchPassword"> The two value of password is not match!</p>
+                    </div>
+              </div>
+          <div class="row justify-content-center">
+                        <button type="submit" [disabled]="!signUpForm.valid"  class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Sign Up with Email</button>
+          </div>
+          
+        
+   </form>
+   <div class="col-lg-3 col-md-3 col-sm-3"></div>
+</div>
+<hr>
+    <div class="row justify-content-center">
+          
+                    <button class="btn btn-primary" (click)="signupnwithgoogle()"><i class="fa fa-google" aria-hidden="true"></i>&nbsp;Sign Up With Google</button>
+           
+    </div>
+    <hr>
+    <div class="row">
+         
+                         <p class="col-lg-12 col-md-12 col-sm-12 text-center text-gray" >I'm already member? <a   href="/">Sign In</a></p>
+          
+     
+    </div>
+        <hr>
+</div>

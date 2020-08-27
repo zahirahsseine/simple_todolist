@@ -1,15 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import '~ngx-toastr/toastr.css';
 .bg {
   background: #146eb4;
 }
-
-.navbar-light .navbar-brand {
-  color: #ff9900;
-  font-weight: bold;
-  font-size: 25px;
+.error{
+  border:1px solid red;
 }
-
+.navbar-light .navbar-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+h3{
+  color:white;
+  font-size: 16px;
+}
+h1{
+  font-size: 35px;
+  font-weight: bold;
+  color:#146eb4;
+}
 form {
   border: 1px solid #dadada;
   padding: 10px;
@@ -22,5 +32,14 @@ font-size: 25px;
   color:red;
   font-size: 25px;
   }
-
+  .text-gray{
+    color:gray;
+    font-weight: bold;
+  }
+  .border-form{
+    border:1px solid #dadada;
+    border-radius: 10px;
+    box-shadow: 5px 0 5px 0 gray;
+  }
+ 
 /*# sourceMappingURL=styles.css.map */

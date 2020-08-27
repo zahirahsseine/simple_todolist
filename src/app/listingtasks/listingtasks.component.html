@@ -1,5 +1,5 @@
 
-
+<navbar></navbar>
 <div class="container">
 <div class="row justify-content-end m-2">
     <button type="button" class="btn btn-primary" (click)="newTask()"><i class="fa fa-file"></i>&nbsp;New Task</button>
@@ -8,10 +8,14 @@
             <div class="container" [hidden]="!showForm"  >
                     
                                  <form [formGroup]="taskForm"  (ngSubmit)="onSubmit(taskForm)">
+                                     
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Title</label>
                                         <input type="text" class="form-control" value="test" name="title"  id="title" formControlName="title" required>
-                                        
+                                        <input type="text" class="form-control" [hidden]="true" value="0" name="id"  id="id" formControlName="id" required>
+                                        <input type="text" class="form-control" [hidden]="true" value="0" name="idUser"  id="idUser" formControlName="idUser" required>
+                                        <input type="text" class="form-control" [hidden]="true" value="0" name="key"  id="key" formControlName="key" >
+                                       
                                         <div  *ngIf="taskForm.get('title').touched && taskForm.get('title').invalid"  class="alert alert-danger alert-dismissible fade show" role="alert">
                                            
                                             Name is required.

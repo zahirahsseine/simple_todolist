@@ -1,6 +1,11 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { FormGroup, FormControl,Validators  } from '@angular/forms';
 import {ManagedataService}  from '../services/managedata.service'
+import { task } from '../../modules/task';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { user } from '../../modules/user';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'listingtasks',
   templateUrl: './listingtasks.component.html',
@@ -8,53 +13,64 @@ import {ManagedataService}  from '../services/managedata.service'
 })
 
 export class ListingtasksComponent implements OnInit {
-  tasks:any[]
+ 
   title = 'todolist';
   showForm=false
   task:any;
-  taskForm: FormGroup;
-  constructor(private service:ManagedataService) { 
-            console.log(this.title)
-            this.service.getTasks(1)
-            .subscribe(response=>{
-                   console.log(response)
-                  this.tasks=response
-            })
-            console.log(this.taskForm)
+  taskForm = new FormGroup({
+    key: new FormControl(''),
+    id: new FormControl(''),
+    title: new FormControl('',[Validators.required]),
+    completed: new FormControl(''),
+    idUser: new FormControl('')
+  });
+  public tasks:task[]=[]
+
+  constructor(private service:ManagedataService,private db:AngularFireDatabase,private toastr: ToastrService) { 
+    
+   this.loadData()
+          
   }
 
   ngOnInit(): void {
- this.taskForm = new FormGroup({
-    title: new FormControl(''),
-    completed: new FormControl(''),
-    
-  });
+
  
+  }
+  loadData()
+  {
+    this.tasks.length=0
+    this.service.getTasks().then(res=>{this.tasks=res})
   }
   onSubmit(taskForm)
 {
     
-       this.service.createTask(taskForm.value)
+  if(this.taskForm.valid)
+  {
+    if(this.task!=null)
+    {
+        this.service.upadteTask(this.taskForm.value).then(res=>{ this.toastr.success(res,'Message');  this.loadData();}).catch(error=>{ this.toastr.error(error,'Message')})
+    }
+    else{
       
-       .subscribe(response=>{ 
-        taskForm.value.id=parseInt(response.id)
-        taskForm.value.completed=taskForm.value.completed?taskForm.value.completed:false
-        this.tasks.splice(0,0,taskForm.value)
+      this.service.createTask(this.taskForm.value).then(res=>{ this.toastr.success(res,'Message');  this.loadData();}).catch(error=>{ this.toastr.error(error,'Message')})
+    }
+    this.showForm=false        
+  }
       
-      },error=>{console.log(error)});
      
 }
 newTask()
 {
   this.showForm=true
   this.task=null
-  console.log(this.task)
- // this.taskForm.reset()
+  this.service.setMaxId()
+  this.taskForm.controls.id.setValue(this.service.maxId)
+  this.taskForm.controls.idUser.setValue(this.service.getcurrentuser())
 }
 setTask(event)
 {
    this.task=event;
-  this.taskForm.setValue({title: this.task.title, completed: this.task.completed }); 
+  this.taskForm.setValue({key:this.task.key,id:this.task.id,title: this.task.title, completed: this.task.completed ,idUser:this.service.getcurrentuser()}); 
    this.showForm=true
 }
 }

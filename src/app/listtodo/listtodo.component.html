@@ -11,18 +11,18 @@
            <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Please!</strong> Confirm your request?
             <div class="row justify-content-end">
-                  <button class="btn btn-primary" (click)="confirmDeleteTask(task.id)">Confirm</button>
+                  <button class="btn btn-primary" (click)="confirmDeleteTask(task.key)">Confirm</button>
                   <button class="btn btn-danger" (click)="deletedop=null" >Cancel</button>
             </div>
         
           </div></td>
           <td [hidden]="deletedop==task.id" >{{task.id}}</td>
           <td [hidden]="deletedop==task.id">{{task.title}}</td>
-          <td [hidden]="deletedop==task.id"> <a href="#" (click)='CompletedTask(task)' ><i [class]="task.completed?'fa fa-thumbs-up':'fa fa-thumbs-down'"></i></a></td>
+          <td [hidden]="deletedop==task.id"> <a  (click)='completedTask(task)' ><i [class]="task.completed?'fa fa-thumbs-up':'fa fa-thumbs-down'"></i></a></td>
           <td  [hidden]="deletedop==task.id">
                
-                <a href="#" (click)='UpdateTask(task)' class="btn btn-danger"><i class="fa fa-edit"></i></a>
-                <a href="#" (click)='deleteTask(task.id)' class="btn btn-primary ml-2"><i class="fa fa-trash"></i></a></td>
+                <a  (click)='UpdateTask(task)' class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                <a  (click)='deleteTask(task.id)' class="btn btn-primary ml-2"><i class="fa fa-trash"></i></a></td>
       </tr>
    
    </tbody>
