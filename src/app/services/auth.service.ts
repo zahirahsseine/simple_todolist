@@ -25,7 +25,7 @@ export class AuthService {
   
    getcurrentuser():string
   {
-    console.log(this.fauth.auth.currentUser.uid)
+   
     return  this.fauth.auth.currentUser.uid
   }
 async gtId(type,method,email?:string,password?:string):Promise<string>

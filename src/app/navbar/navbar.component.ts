@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   name:string;
   constructor(private fauth: AngularFireAuth) {
     fauth.authState.subscribe(u=>{
-      this.name=u.displayName;
+      this.name=u.displayName?u.displayName:"";
 
     })
    }

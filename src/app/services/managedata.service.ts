@@ -25,7 +25,7 @@ export class ManagedataService {
        
        if(data)
        {
-       console.log(data.key)
+       
            let Objtask:task=new task()
            _this.maxId=_this.maxId>data.child("id").val()?_this.maxId:data.child("id").val()
            Objtask.id=data.child("id").val()
@@ -66,7 +66,7 @@ export class ManagedataService {
   }
  async setCompletedTask(key,val)
   {
-    console.log(val)
+   
     return await this.db.database.ref("/tasks/"+key).child("completed").set(val).then(res=>{return "Success!Task done"}).catch(error=>{return "Error!Task failed"})
   }
 }
