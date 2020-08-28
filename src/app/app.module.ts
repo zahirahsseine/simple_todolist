@@ -19,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,8 @@ import { AuthService } from './services/auth.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ReactiveFormsModule, HttpClientModule,AngularFireModule,AngularFireDatabaseModule,AngularFireAuthModule,
+    AppRoutingModule,ReactiveFormsModule, HttpClientModule,AngularFireModule,AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firbase),  BrowserAnimationsModule, // required animations module
     // ToastrModule added
     ToastrModule.forRoot({
@@ -42,7 +43,7 @@ import { AuthService } from './services/auth.service';
       preventDuplicates: true,
     }),
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService,AuthGuard,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
