@@ -4,8 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProgressComponent } from './progress/progress.component';
-import { NotificationComponent } from './notification/notification.component';
+
 import { ListtodoComponent } from './listtodo/listtodo.component';
 import { ListingtasksComponent } from './listingtasks/listingtasks.component';
 import { HttpClientModule  } from '@angular/common/http';
@@ -24,8 +23,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   declarations: [
     AppComponent,
     NavbarComponent,
-    ProgressComponent,
-    NotificationComponent,
     ListtodoComponent,
     ListingtasksComponent,
     LoginComponent,

@@ -48,11 +48,11 @@ export class ListingtasksComponent implements OnInit {
   {
     if(this.task!=null)
     {
-        this.service.upadteTask(this.taskForm.value).then(res=>{ this.toastr.success(res,'Message');  this.loadData();}).catch(error=>{ this.toastr.error(error,'Message')})
+        this.service.upadteTask(this.taskForm.value).then(res=>{ this.toastr.success(res,'Message');this.taskForm.reset();  this.loadData();}).catch(error=>{ this.toastr.error(error,'Message')})
     }
     else{
       
-      this.service.createTask(this.taskForm.value).then(res=>{ this.toastr.success(res,'Message');  this.loadData();}).catch(error=>{ this.toastr.error(error,'Message')})
+      this.service.createTask(this.taskForm.value).then(res=>{ this.toastr.success(res,'Message');this.taskForm.reset();  this.loadData();}).catch(error=>{ this.toastr.error(error,'Message')})
     }
     this.showForm=false        
   }
